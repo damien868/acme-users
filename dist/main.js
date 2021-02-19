@@ -14275,7 +14275,7 @@ eval("/*\n\nCopyright (c) 2012-2014 Jeffrey Mealo\n\nPermission is hereby grante
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const faker = __webpack_require__(/*! faker */ \"./node_modules/faker/index.js\");\n\nconsole.log(\n  faker.name.firstName(),\n  faker.name.lastName(),\n  faker.address.streetAddress()\n);\n\nconst users = new Array(30)\n  .fill(\"\")\n  .map((val) => `${faker.name.firstName()} ${faker.name.lastName()}`);\n\n\n//# sourceURL=webpack://acme-users/./src/index.js?");
+eval("const faker = __webpack_require__(/*! faker */ \"./node_modules/faker/index.js\");\n\nconst users = new Array(30)\n  .fill(\"\")\n  .map((val) => `${faker.name.firstName()} ${faker.name.lastName()}`);\n\nlet curr=window.location.hash.slice(1)*1;\n\n  addressMap=users.reduce((acc,user)=>{\n    acc[user]=faker.address.streetAddress()\n    return acc\n  },{})\nconst userList=document.getElementById('user-list')\n  \nconst render=()=>{\n  const html=`\n  ${users.map((val,idx)=>`\n  <a href='#${idx}'> <li >${val}</li></a>\n  ${\n    curr===idx ? \n    `<ul>${addressMap[val]}</ul>` : ''}`).join('')}`  \n  userList.innerHTML=html;\n  }\n\n  \n  render();\n\n  window.addEventListener('hashchange',()=>{\n    curr=window.location.hash.slice(1)*1;\n    render();\n  })\n\n//# sourceURL=webpack://acme-users/./src/index.js?");
 
 /***/ })
 
